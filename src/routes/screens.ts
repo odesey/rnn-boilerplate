@@ -1,10 +1,10 @@
 import { Navigation } from 'react-native-navigation'
-import { RootStore } from 'store/root.store'
 
 /**
  * PUBLIC ROUTES
  */
 import { Example } from 'routes/public/Example'
+import { CustomButton } from 'routes/public/CustomButton'
 
 /**
  * PRIVATE ROUTES
@@ -17,8 +17,10 @@ import { wrapPublicRoutes, wrapPrivateRoutes } from './Provider'
 /**
  * Register Public routes
  */
-export function registerPublicRoutes(rootStore: RootStore) {
-  const publicRoutes = new Map().set(PublicRoutes.Example, Example)
+export function registerPublicRoutes() {
+  const publicRoutes = new Map()
+    .set(PublicRoutes.Example, Example)
+    .set(PublicRoutes.CustomButton, CustomButton)
 
   Array.from(publicRoutes).forEach(([routeName, component]) => {
     Navigation.registerComponent(routeName, () => wrapPublicRoutes(component))
@@ -28,7 +30,7 @@ export function registerPublicRoutes(rootStore: RootStore) {
 /**
  * Register Private routes
  */
-export function registerPrivateRoutes(rootStore: RootStore) {
+export function registerPrivateRoutes() {
   const privateRoutes = new Map().set(PrivateRoutes.Example2, Example2)
 
   Array.from(privateRoutes).forEach(([routeName, component]) => {

@@ -5,9 +5,9 @@ import { rootStore } from 'store/root.store'
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setDefaultOptions(defaultOptions)
-  rootStore.hydrate().then(({}) => {
-    registerPublicRoutes(rootStore)
-    registerPrivateRoutes(rootStore)
+  rootStore.hydrate().then(() => {
+    registerPublicRoutes()
+    registerPrivateRoutes()
 
     // Decide whether user is logged in here and choose the next route.
     rootStore.login()

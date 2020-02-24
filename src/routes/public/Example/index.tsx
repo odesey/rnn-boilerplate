@@ -1,12 +1,13 @@
-import React, { useContext } from 'react'
-import { Text, View, Button, ScrollView } from 'react-native'
+import React, { useContext, useEffect } from 'react'
+import { Text, View, Button, ScrollView, Alert } from 'react-native'
 import { observer } from 'mobx-react-lite'
 import { RootType } from 'routes/types'
 import { NavigationHelpers } from 'routes/functions'
-import { PrivateRoutes } from 'routes/routes'
+import { PrivateRoutes, PublicRoutes } from 'routes/routes'
 import { RootStoreContext } from 'store/root.store'
 
 import styles from './styles'
+import { Navigation } from 'react-native-navigation'
 
 interface ExampleProps {
   componentId: string
@@ -35,10 +36,33 @@ const Example: RootType<ExampleProps> = observer(function Example({ componentId 
 })
 
 Example.options = {
+  layout: {
+    backgroundColor: 'white',
+    componentBackgroundColor: 'white',
+  },
   topBar: {
     noBorder: false,
     title: { text: 'Example 1' },
     largeTitle: { visible: true, color: 'coral' },
+
+    leftButtons: [
+      {
+        id: 'RIGHT_BUTTON_1',
+        text: 'hello',
+      },
+    ],
+
+    rightButtons: [
+      {
+        id: 'RIGHT_BUTTON_2',
+        component: {
+          name: PublicRoutes.CustomButton,
+          passProps: {
+            buttonText: 'Button 2',
+          },
+        },
+      },
+    ],
   },
 }
 
