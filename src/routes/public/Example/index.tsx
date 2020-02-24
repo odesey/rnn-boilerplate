@@ -43,12 +43,17 @@ Example.options = {
   topBar: {
     noBorder: false,
     title: { text: 'Example 1' },
-    largeTitle: { visible: true, color: 'coral' },
+    largeTitle: { visible: false },
 
     leftButtons: [
       {
         id: 'RIGHT_BUTTON_1',
-        text: 'hello',
+        component: {
+          name: PublicRoutes.CustomButton,
+          passProps: {
+            buttonText: 'Left button',
+          },
+        },
       },
     ],
 
@@ -58,7 +63,7 @@ Example.options = {
         component: {
           name: PublicRoutes.CustomButton,
           passProps: {
-            buttonText: 'Button 2',
+            buttonText: 'Right button',
           },
         },
       },

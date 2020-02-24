@@ -44,7 +44,7 @@ Example2.options = () => ({
   topBar: {
     noBorder: true,
     title: { text: 'Example 2' },
-    largeTitle: { visible: true },
+    largeTitle: { visible: false },
   },
 })
 
