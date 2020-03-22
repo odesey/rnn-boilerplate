@@ -1,7 +1,8 @@
+import React from 'react'
 import { observable, action } from 'mobx'
 import { persist } from 'mobx-persist'
 
-export class ExampleStore {
+export class CounterStore {
   @persist @observable count = 0
 
   @action.bound
@@ -19,3 +20,6 @@ export class ExampleStore {
     this.count = 0
   }
 }
+
+export const counterStore = new CounterStore()
+export const CounterStoreContext = React.createContext(counterStore)

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Options } from 'react-native-navigation'
 import { RootType } from 'routes/types'
+import { CounterContextProvider } from 'context/CounterContext'
 
 /**
  * ### Wrapped component type
@@ -10,14 +11,14 @@ import { RootType } from 'routes/types'
 type WrappedComponentType = React.FC & { options?: Options }
 
 /**
- * ### Public routes wrap
+ * ### App routes wrap
  *
- * This is the HOC for all public routes.
+ * This is the HOC for all app routes.
  * You can use this HOC to wrap with any provider (Redux, Apollo, etc).
  * You can also add things like global event listener or anything global really.
  */
-export const wrapPublicRoutes = (WrappedComponent: WrappedComponentType) => {
-  const HOC: RootType = props => {
+export const wrapRoutes = (WrappedComponent: WrappedComponentType) => {
+  const HOC: RootType = (props) => {
     return <WrappedComponent {...props} />
   }
 
@@ -26,18 +27,18 @@ export const wrapPublicRoutes = (WrappedComponent: WrappedComponentType) => {
 }
 
 /**
- * ### Private routes wrap
+ * ### React Context Counter routes wrap
  *
- * This is the HOC for all private routes.
- * Wraps the public routes with TopLevelProvider.
- * You can use this HOC to wrap with any provider (Redux, Apollo, etc).
- * Should also perform Auth check here.
+ * This is the HOC for all Counter React Context routes.
+ * Any routes wrapped with this will have an access to the Counter Context.
  */
-export const wrapPrivateRoutes = (WrappedComponent: WrappedComponentType) => {
-  const HOC: RootType = props => {
-    // Do auth check here. Logout if user has no auth token.
-
-    return <WrappedComponent {...props} />
+export const wrapCounterContext = (WrappedComponent: WrappedComponentType) => {
+  const HOC: RootType = (props) => {
+    return (
+      <CounterContextProvider>
+        <WrappedComponent {...props} />
+      </CounterContextProvider>
+    )
   }
 
   HOC.options = WrappedComponent.options

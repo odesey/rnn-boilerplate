@@ -1,7 +1,9 @@
-export enum PublicRoutes {
-  Example = 'public/example',
+export enum Routes {
+  App = 'routes/App',
+  CounterMobXIncrement = 'routes/CounterMobXIncrement',
+  CounterMobXDecrement = 'routes/CounterMobXDecrement',
 }
 
-export enum PrivateRoutes {
-  Example2 = 'private/example2',
+export enum CounterContextRoutes {
+  ReactContext = 'counterContext/reactContext',
 }

@@ -2,25 +2,25 @@ import { createContext } from 'react'
 import { AsyncStorage, Alert } from 'react-native'
 import { create } from 'mobx-persist'
 import { NavigationHelpers } from 'routes/functions'
-import { PublicRoutes } from 'routes/routes'
+import { Routes } from 'routes/routes'
 
-import { ExampleStore } from './example.store'
+import { CounterStore } from './counter.store'
 
 export class RootStore {
-  exampleStore: ExampleStore
+  counterStore: CounterStore
 
   constructor() {
-    this.exampleStore = new ExampleStore()
+    this.counterStore = new CounterStore()
   }
 
   login = () => {
     // Do app set up stuff here and navigate to logged in screen.
-    NavigationHelpers.setRoot({ name: PublicRoutes.Example })
+    NavigationHelpers.setRoot({ name: Routes.App })
   }
 
   logout = () => {
     // Do app clean up stuff here and navigate to logged out screen.
-    NavigationHelpers.setRoot({ name: PublicRoutes.Example })
+    NavigationHelpers.setRoot({ name: Routes.App })
   }
 
   /**
@@ -29,15 +29,15 @@ export class RootStore {
   async hydrate() {
     const hydrate = create({ storage: AsyncStorage })
     try {
-      await hydrate('ExampleStore: ', this.exampleStore)
+      await hydrate('ExampleStore: ', this.counterStore)
       return {
-        exampleStore: this.exampleStore,
+        exampleStore: this.counterStore,
       }
     } catch (e) {
       this.logout()
       Alert.alert('Something went wrong')
       return {
-        exampleStore: this.exampleStore,
+        exampleStore: this.counterStore,
       }
     }
   }

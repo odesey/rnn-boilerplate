@@ -1,20 +1,17 @@
 import { StyleSheet, ViewStyle, TextStyle } from 'react-native'
 
 interface Style {
-  container: ViewStyle,
-  welcome: TextStyle
-
+  container: ViewStyle
+  count: TextStyle
 }
 
 export default StyleSheet.create<Style>({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    paddingTop: 20,
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
+  count: {
     textAlign: 'center',
     margin: 10,
   },
