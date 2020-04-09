@@ -1,37 +1,28 @@
 import { Navigation } from 'react-native-navigation'
-import { RootStore } from 'store/root.store'
 
-/**
- * PUBLIC ROUTES
- */
-import { Example } from 'routes/public/Example'
+import { wrapRoutes } from './Provider'
+import { Screens } from './routes'
 
-/**
- * PRIVATE ROUTES
- */
-import { Example2 } from 'routes/private/Example2'
-
-import { PrivateRoutes, PublicRoutes } from './routes'
-import { wrapPublicRoutes, wrapPrivateRoutes } from './Provider'
+import { Screen1 } from './Screen1'
+import { Screen2 } from './Screen2'
+import { Modal1 } from './Modal1'
+import { Modal2 } from './Modal2'
+import { Overlay1 } from './Overlay1'
+import { Overlay2 } from './Overlay2'
 
 /**
  * Register Public routes
  */
-export function registerPublicRoutes(rootStore: RootStore) {
-  const publicRoutes = new Map().set(PublicRoutes.Example, Example)
+export function registerScreens() {
+  const routes = new Map()
+    .set(Screens.Screen1, Screen1)
+    .set(Screens.Screen2, Screen2)
+    .set(Screens.Modal1, Modal1)
+    .set(Screens.Modal2, Modal2)
+    .set(Screens.Overlay1, Overlay1)
+    .set(Screens.Overlay2, Overlay2)
 
-  Array.from(publicRoutes).forEach(([routeName, component]) => {
-    Navigation.registerComponent(routeName, () => wrapPublicRoutes(component))
-  })
-}
-
-/**
- * Register Private routes
- */
-export function registerPrivateRoutes(rootStore: RootStore) {
-  const privateRoutes = new Map().set(PrivateRoutes.Example2, Example2)
-
-  Array.from(privateRoutes).forEach(([routeName, component]) => {
-    Navigation.registerComponent(routeName, () => wrapPrivateRoutes(component))
+  Array.from(routes).forEach(([routeName, component]) => {
+    Navigation.registerComponent(routeName, () => wrapRoutes(component))
   })
 }

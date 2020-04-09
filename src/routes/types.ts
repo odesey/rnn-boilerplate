@@ -1,6 +1,6 @@
 import { Options } from 'react-native-navigation'
 
-export interface NavigationProps {
+export type NavigationProps = {
   componentId: string
 }
 
